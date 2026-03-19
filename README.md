@@ -39,6 +39,9 @@ ruff check src/
 # Run tests
 pytest
 ```
+# Note
+
+This project is under development (BETA)
 
 ## License
 
