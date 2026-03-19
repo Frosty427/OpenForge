@@ -1,0 +1,2 @@
+[console_scripts]
+openforge = openforge.interfaces.cli.app:main

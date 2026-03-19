@@ -1,0 +1,25 @@
+{
+    "name": "hello_world",
+    "version": "0.1.0",
+    "description": "A minimal example plugin that greets the user.",
+    "author": "OpenForge Contributors",
+    "enabled": true,
+    "entry_point": "main.py",
+    "permissions": [],
+    "tools": [
+        {
+            "name": "greet",
+            "description": "Greet someone by name. Returns a friendly greeting message.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the person to greet."
+                    }
+                },
+                "required": ["name"]
+            }
+        }
+    ]
+}

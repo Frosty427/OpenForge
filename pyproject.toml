@@ -1,0 +1,49 @@
+[project]
+name = "openforge"
+version = "0.1.0"
+description = "A CLI-based AI agent with a plugin system."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [{ name = "OpenForge Contributors" }]
+keywords = ["ai", "agent", "cli", "plugins"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+dependencies = [
+    "typer>=0.9",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+all = ["openai>=1.0"]
+
+[project.scripts]
+openforge = "openforge.interfaces.cli.app:main"
+
+[build-system]
+requires = ["setuptools>=68.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
