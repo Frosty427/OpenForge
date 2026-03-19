@@ -40,6 +40,9 @@ ruff check src/
 pytest
 ```
 
+# Note
+This project is under development (BETA)
+
 ## License
 
-MIT
+GNU General Public License v3.0
