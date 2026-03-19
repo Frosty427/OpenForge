@@ -1,8 +1,0 @@
-typer>=0.9
-rich>=13.0
-
-[all]
-openai>=1.0
-
-[openai]
-openai>=1.0
