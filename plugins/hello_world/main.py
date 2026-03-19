@@ -20,13 +20,13 @@ class HelloWorldPlugin(BasePlugin):
         )
 
     def execute(self, tool_name: str, **kwargs: Any) -> ToolResult:
-        """Execute the plugin. 
-        
-        Since this plugin only has one tool ('greet'), we don't strictly 
+        """Execute the plugin.
+
+        Since this plugin only has one tool ('greet'), we don't strictly
         need to check tool_name, but we accept it to fulfil the abstract method.
         """
         name = kwargs.get("name", "World")
-        greeting = f"Hello, {name}! 👋 This is the hello_world plugin."
+        greeting = f"Hello, {name}! This is the hello_world plugin."
         return ToolResult.ok(data={"greeting": greeting}, message=greeting)
 
     def on_load(self) -> None:

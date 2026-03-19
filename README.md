@@ -39,10 +39,7 @@ ruff check src/
 # Run tests
 pytest
 ```
-# Note
-
-This project is under development (BETA)
 
 ## License
 
-GNU General Public License v3.0
+MIT

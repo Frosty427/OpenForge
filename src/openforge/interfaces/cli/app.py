@@ -71,9 +71,7 @@ def _build_components() -> tuple[PluginManager, ToolRegistry]:
         except Exception:
             continue
         manager.register(plugin)
-        specs = parse_tool_specs_from_manifest(
-            {"name": manifest.name, "tools": manifest.tools}
-        )
+        specs = parse_tool_specs_from_manifest({"name": manifest.name, "tools": manifest.tools})
         registry.register(plugin, specs if specs else None)
 
     if _state["verbose"]:
@@ -154,8 +152,9 @@ def root(
     ] = None,
     version: Annotated[
         Optional[bool],
-        typer.Option("--version", help="Show version and exit.", callback=_version_callback,
-                     is_eager=True),
+        typer.Option(
+            "--version", help="Show version and exit.", callback=_version_callback, is_eager=True
+        ),
     ] = None,
 ) -> None:
     """🔥 OpenForge — A CLI-based AI agent with a plugin system."""
@@ -177,6 +176,7 @@ def root(
                 title="Welcome",
             )
         )
+
 
 @app.command(hidden=True)
 def ask(
@@ -295,8 +295,7 @@ def _show_plugins() -> None:
     for plugin in manager:
         meta = plugin.metadata
         tools = [
-            name for name in registry.tool_names
-            if registry.get_plugin_for_tool(name) is plugin
+            name for name in registry.tool_names if registry.get_plugin_for_tool(name) is plugin
         ]
         table.add_row(
             meta.name,
@@ -329,9 +328,9 @@ def run_plugin(
     # For manual CLI runs, default the tool_name to the plugin's name.
     result = plugin.execute(plugin.metadata.name, name=name)
     if result.is_success:
-        console.print(f"[green]✔ {result.message}[/green]")
+        console.print(f"[green][OK] {result.message}[/green]")
     else:
-        console.print(f"[red]✘ {result.error}[/red]")
+        console.print(f"[red][FAIL] {result.error}[/red]")
 
 
 # ---------------------------------------------------------------------------
@@ -342,7 +341,7 @@ def run_plugin(
 def main() -> None:
     """Entrypoint called by the console_scripts entry point."""
     import sys
-    
+
     # Typer doesn't natively support default positional commands alongside subcommands.
     # To support `openforge "prompt"`, we inject a hidden `ask` command into sys.argv
     # if the first argument isn't a known command or flag.
