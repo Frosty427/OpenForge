@@ -1,48 +1,48 @@
-# 🔥 OpenForge
+# OpenForge - AI Desktop Assistant
 
-A CLI-based AI agent with a modular plugin system.
+OpenForge is an advanced, AI-powered desktop assistant built with Electron, React, and TypeScript. Inspired by Jarvis, it integrates seamlessly with your operating system to provide intelligent control and assistance.
 
-## Quick Start
+## Features
 
-```bash
-# Install with uv
-uv pip install -e .
+- **Global Hotkey:** Summon OpenForge instantly with `Alt + Space`.
+- **AI Integration:** Supports OpenAI, Anthropic, OpenRouter, and Local LLMs (via Ollama).
+- **System Control:** Execute system commands directly from the chat interface (e.g., `/exec notepad`).
+- **Modern UI:** Sleek, dark-themed, and animated interface.
 
-# Or with pip
-pip install -e .
-
-# Run the CLI
-openforge --help
-```
-
-## Project Structure
-
-```
-src/openforge/
-├── core/             # Core agent logic and base abstractions
-├── plugins/          # Built-in plugin implementations
-├── plugin_manager/   # Plugin discovery, loading, and lifecycle
-├── providers/        # AI provider integrations (LLM backends)
-├── interfaces/
-│   └── cli/          # CLI entrypoint and commands
-```
-
-## Development
+## Installation
 
 ```bash
-# Install dev dependencies
-uv pip install -e ".[dev]"
-
-# Run linter
-ruff check src/
-
-# Run tests
-pytest
+git clone https://github.com/Frosty427/OpenForge.git
+cd OpenForge
+npm install
 ```
 
-# Note
-This project is under development (BETA)
+## Usage
+
+### Development Mode
+To start the application in development mode with hot-reloading:
+
+```bash
+npm run dev
+```
+
+### Production Build
+To build the application for your OS:
+
+```bash
+npm run build
+```
+
+The executable will be located in the `dist` or `release` folder.
+
+## Configuration
+
+AI settings can be configured directly in the code (for now) or through future settings UI updates.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
-GNU General Public License v3.0
+[MIT](https://choosealicense.com/licenses/mit/)
