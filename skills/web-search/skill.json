@@ -1,0 +1,7 @@
+{
+  "name": "web-search",
+  "version": "1.0.0",
+  "description": "Search the web and fetch web pages",
+  "author": "OpenForge Team",
+  "triggers": ["search", "google", "fetch url", "scrape"]
+}

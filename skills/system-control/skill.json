@@ -1,0 +1,7 @@
+{
+  "name": "system-control",
+  "version": "1.0.0",
+  "description": "System control and process management",
+  "author": "OpenForge Team",
+  "triggers": ["run command", "system info", "processes", "kill process", "open app"]
+}

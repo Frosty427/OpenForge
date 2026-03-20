@@ -83,8 +83,42 @@ app.whenReady().then(() => {
       } else {
         win.show()
         win.focus()
+        win.setSize(800, 500)
       }
     }
+  })
+
+  ipcMain.handle('hide-window', () => {
+    if (win) {
+      win.hide()
+    }
+  })
+
+  ipcMain.handle('minimize-window', () => {
+    if (win) {
+      win.minimize()
+    }
+  })
+
+  ipcMain.handle('maximize-window', () => {
+    if (win) {
+      if (win.isMaximized()) {
+        win.unmaximize()
+      } else {
+        win.maximize()
+      }
+    }
+  })
+
+  ipcMain.handle('get-window-state', () => {
+    if (win) {
+      return {
+        isMaximized: win.isMaximized(),
+        isMinimized: win.isMinimized(),
+        isVisible: win.isVisible()
+      }
+    }
+    return {}
   })
 
   // IPC Handlers
