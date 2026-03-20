@@ -31,7 +31,7 @@ cd OpenForge
 npm install
 npm run dev
 ````
-## 💻 Why TypeScript?
+# 💻 Why TypeScript?
 
 OpenForge is an orchestration system for prompts, tools, protocols, and integrations.
 TypeScript ensures:
