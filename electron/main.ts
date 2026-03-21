@@ -25,14 +25,16 @@ function createWindow() {
   
   win = new BrowserWindow({
     width: 800,
-    height: 100,
-    x: (width - 800) / 2,
-    y: height / 4,
+    height: 80,
+    x: Math.floor((width - 800) / 2),
+    y: Math.floor(height * 0.58),
     frame: false,
     transparent: true,
-    resizable: false, 
+    resizable: false,
     alwaysOnTop: true,
     skipTaskbar: true,
+    backgroundColor: '#00000000',
+    hasShadow: false,
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),

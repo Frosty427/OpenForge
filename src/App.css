@@ -1,10 +1,11 @@
-﻿body {
+﻿html, body {
   margin: 0;
   padding: 0;
-  background: transparent;
+  background: transparent !important;
   font-family: 'Inter', -apple-system, sans-serif;
   overflow: hidden;
   color: #fff;
+  -webkit-app-region: no-drag;
 }
 
 #root {
@@ -13,22 +14,41 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 50px;
+  padding-top: 16px;
+  background: transparent !important;
+  pointer-events: none;
+}
+
+#root > * {
+  pointer-events: all;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Cilindir / Pill-Shaped Container */
 .container {
   width: 80%;
   max-width: 600px;
-  background: rgba(15, 15, 15, 0.8);
+  background: rgba(15, 15, 15, 0.85);
   backdrop-filter: blur(25px) saturate(180%);
-  border-radius: 50px; /* Fully rounded for cylinder look */
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 212, 255, 0.1);
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .search-bar {

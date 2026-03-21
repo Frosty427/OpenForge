@@ -16,12 +16,18 @@ function App() {
   const [aiManager] = useState(() => new AIManager(defaultConfig))
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(localStorage.getItem('of_disclaimer_accepted') === 'true')
   const inputRef = useRef<HTMLInputElement>(null)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (disclaimerAccepted) {
         inputRef.current?.focus()
     }
   }, [disclaimerAccepted])
+
+  // Otomatik scroll — her yeni mesajda en alta in
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
 
   useEffect(() => {
     const height = messages.length > 0 ? 550 : 80
@@ -104,6 +110,7 @@ function App() {
               <div className="message-content">{msg.content}</div>
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
       )}
     </div>
