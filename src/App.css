@@ -1,11 +1,10 @@
-﻿html, body {
+html, body {
   margin: 0;
   padding: 0;
   background: transparent !important;
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: -apple-system, 'Inter', BlinkMacSystemFont, sans-serif;
   overflow: hidden;
   color: #fff;
-  -webkit-app-region: no-drag;
 }
 
 #root {
@@ -14,7 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 16px;
+  padding-top: 10px;
   background: transparent !important;
   pointer-events: none;
 }
@@ -23,116 +22,166 @@
   pointer-events: all;
 }
 
+/* === Animasyonlar === */
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-18px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  from { opacity: 0; transform: translateY(-14px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)     scale(1);    }
 }
 
-/* Cilindir / Pill-Shaped Container */
+@keyframes slideUp {
+  from { opacity: 1; transform: translateY(0)     scale(1);    }
+  to   { opacity: 0; transform: translateY(-14px) scale(0.96); }
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === Ana Kapsayıcı === */
 .container {
-  width: 80%;
-  max-width: 600px;
-  background: rgba(15, 15, 15, 0.85);
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 212, 255, 0.1);
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 90%;
+  max-width: 640px;
+  background: rgba(20, 20, 24, 0.94);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.35),
+    0 10px 40px rgba(0, 0, 0, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  max-height: 520px;
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.search-bar {
+.container.closing {
+  animation: slideUp 0.25s ease-in forwards;
+}
+
+.container:focus-within {
+  border-color: rgba(99, 102, 241, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.35),
+    0 10px 40px rgba(0, 0, 0, 0.55),
+    0 0 0 3px rgba(99, 102, 241, 0.09);
+}
+
+/* === Mesajlar Alanı === */
+.messages-area {
+  flex: 1;
+  padding: 14px 14px 0 14px;
+  overflow-y: scroll;
+  scrollbar-width: none;          /* Firefox */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.messages-area::-webkit-scrollbar {
+  display: none;                  /* Chrome/Safari */
+}
+
+.messages-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 10px 0 0 0;
+  flex-shrink: 0;
+}
+
+/* === Mesaj Balonları === */
+.message {
+  display: flex;
+  animation: msgIn 0.22s ease-out both;
+}
+
+.message.user      { justify-content: flex-end;  }
+.message.assistant { justify-content: flex-start; }
+
+.message-content {
+  padding: 8px 13px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  max-width: 82%;
+  word-break: break-word;
+}
+
+.message.user .message-content {
+  background: rgba(99, 102, 241, 0.18);
+  border: 1px solid rgba(99, 102, 241, 0.28);
+  color: #e0e0ff;
+  border-bottom-right-radius: 4px;
+}
+
+.message.assistant .message-content {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #cfcfd4;
+  border-bottom-left-radius: 4px;
+}
+
+/* === Girdi Alanı === */
+.input-area {
   display: flex;
   align-items: center;
-  padding: 0 25px;
-  height: 64px;
+  padding: 9px 12px;
+  gap: 8px;
+  min-height: 48px;
+  flex-shrink: 0;
+}
+
+/* Ataç / Attachment butonu */
+.attach-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.attach-btn:hover {
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .main-input {
   flex: 1;
   background: transparent;
   border: none;
-  font-size: 18px;
-  color: white;
+  font-size: 14px;
+  color: #e8e8ea;
   outline: none;
-  font-weight: 300;
-  letter-spacing: 0.5px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1.5;
 }
 
 .main-input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.25);
 }
 
-.glow-ring {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50px;
-  pointer-events: none;
-  box-shadow: inset 0 0 15px rgba(0, 212, 255, 0.2);
-  animation: pulse 3s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0% { box-shadow: inset 0 0 5px rgba(0, 212, 255, 0.1); }
-  50% { box-shadow: inset 0 0 20px rgba(0, 212, 255, 0.3); }
-  100% { box-shadow: inset 0 0 5px rgba(0, 212, 255, 0.1); }
-}
-
-.messages-area {
-  padding: 0 25px 25px 25px;
-  max-height: 400px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.message {
-  animation: slideIn 0.3s ease-out;
-}
-
-.message-content {
-  padding: 12px 18px;
-  border-radius: 20px;
-  font-size: 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  max-width: 85%;
-}
-
-.message.user { align-self: flex-end; }
-.message.user .message-content { background: rgba(0, 150, 255, 0.15); border-color: rgba(0, 150, 255, 0.2); }
-
-.message.assistant { align-self: flex-start; }
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Loader Animation */
+/* Yükleniyor dönen çember */
 .loader {
-  width: 18px;
-  height: 18px;
-  border: 2px solid rgba(0, 212, 255, 0.1);
-  border-top-color: #00d4ff;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid rgba(99, 102, 241, 0.18);
+  border-top-color: #818cf8;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
 }

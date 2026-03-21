@@ -24,10 +24,10 @@ function createWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
   
   win = new BrowserWindow({
-    width: 800,
-    height: 80,
-    x: Math.floor((width - 800) / 2),
-    y: Math.floor(height * 0.58),
+    width: 660,
+    height: 72,
+    x: Math.floor((width - 660) / 2),
+    y: Math.floor(height * 0.70),
     frame: false,
     transparent: true,
     resizable: false,
@@ -81,11 +81,12 @@ app.whenReady().then(() => {
   globalShortcut.register('Alt+Space', () => {
     if (win) {
       if (win.isVisible()) {
-        win.hide()
+        // Renderer'a animasyon başlat komutu gönder, o kapanınca hide çağırır
+        win.webContents.send('trigger-hide')
       } else {
         win.show()
         win.focus()
-        win.setSize(800, 500)
+        win.setSize(660, 72)
       }
     }
   })
