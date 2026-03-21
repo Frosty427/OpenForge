@@ -265,14 +265,58 @@ const commands = {
   config: async () => {
     ensureConfigDir();
     const configFile = path.join(CONFIG_DIR, 'config.json');
-    
+    let config = {};
+    if (fs.existsSync(configFile)) config = JSON.parse(fs.readFileSync(configFile, 'utf-8'));
+
+    // Flag-based: openforge config --provider openai --key sk-xxx --model gpt-4o
+    const flagMap = {};
+    for (let i = 0; i < subArgs.length; i++) {
+      if (subArgs[i].startsWith('--')) {
+        const flagName = subArgs[i].slice(2);
+        flagMap[flagName] = subArgs[i + 1] || '';
+        i++;
+      }
+    }
+
+    const PROVIDER_URLS = {
+      openai:     '',
+      anthropic:  'https://openrouter.ai/api/v1',
+      openrouter: 'https://openrouter.ai/api/v1',
+      groq:       'https://api.groq.com/openai/v1',
+      gemini:     'https://openrouter.ai/api/v1',
+      mistral:    'https://api.mistral.ai/v1',
+      perplexity: 'https://api.perplexity.ai',
+      together:   'https://api.together.xyz/v1',
+      local:      'http://localhost:11434/v1',
+    };
+
+    if (Object.keys(flagMap).length > 0) {
+      if (flagMap.provider) { config.of_provider = flagMap.provider; config.of_base_url = PROVIDER_URLS[flagMap.provider] || ''; }
+      if (flagMap.key)      config.of_api_key = flagMap.key;
+      if (flagMap.model)    config.of_model   = flagMap.model;
+      if (flagMap.baseUrl)  config.of_base_url = flagMap.baseUrl;
+      fs.writeFileSync(configFile, JSON.stringify(config, null, 2));
+      console.log(`${colors.green}✓ Ayarlar kaydedildi:${colors.reset}`);
+      if (flagMap.provider) console.log(`  Provider : ${colors.cyan}${config.of_provider}${colors.reset}`);
+      if (flagMap.key)      console.log(`  API Key  : ${colors.cyan}${config.of_api_key.slice(0,8)}...${colors.reset}`);
+      if (flagMap.model)    console.log(`  Model    : ${colors.cyan}${config.of_model}${colors.reset}`);
+      console.log(`\n${colors.gray}Desteklenen providerlar: openai | anthropic | openrouter | groq | gemini | mistral | perplexity | together | local${colors.reset}`);
+      return;
+    }
+
+    // Mevcut config göster
     if (subArgs.length === 0) {
-      console.log(`${colors.cyan}Config interactive mode - use 'openforge configure' for wizard${colors.reset}`);
+      console.log(`\n${colors.bright}Mevcut AI Ayarları:${colors.reset}`);
+      console.log(`  Provider : ${colors.cyan}${config.of_provider || '(ayarlanmamış)'}${colors.reset}`);
+      console.log(`  Model    : ${colors.cyan}${config.of_model    || '(ayarlanmamış)'}${colors.reset}`);
+      console.log(`  API Key  : ${config.of_api_key ? colors.green + '✓ Ayarlı' : colors.yellow + '✗ Eksik'}${colors.reset}`);
+      console.log(`\n${colors.gray}Kullanım: openforge config --provider groq --key gsk_xxx --model llama-3.3-70b-versatile${colors.reset}`);
+      console.log(`${colors.gray}Desteklenen: openai | anthropic | openrouter | groq | gemini | mistral | perplexity | together | local${colors.reset}\n`);
       return;
     }
 
     const action = subArgs[0];
-    
+
     if (action === 'get') {
       const key = subArgs[1];
       if (fs.existsSync(configFile)) {

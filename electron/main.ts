@@ -25,9 +25,9 @@ function createWindow() {
   
   win = new BrowserWindow({
     width: 660,
-    height: 72,
+    height: 520,
     x: Math.floor((width - 660) / 2),
-    y: Math.floor(height * 0.70),
+    y: Math.floor(height * 0.55),
     frame: false,
     transparent: true,
     resizable: false,
@@ -86,7 +86,7 @@ app.whenReady().then(() => {
       } else {
         win.show()
         win.focus()
-        win.setSize(660, 72)
+        win.setSize(660, 520)
       }
     }
   })

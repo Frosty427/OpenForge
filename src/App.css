@@ -12,97 +12,86 @@ html, body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 10px;
+  align-items: flex-end;
+  padding-bottom: 10px;
   background: transparent !important;
   pointer-events: none;
 }
 
-#root > * {
-  pointer-events: all;
-}
+#root > * { pointer-events: all; }
 
 /* === Animasyonlar === */
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-14px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0)     scale(1);    }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
-
 @keyframes slideUp {
-  from { opacity: 1; transform: translateY(0)     scale(1);    }
+  from { opacity: 1; transform: translateY(0) scale(1); }
   to   { opacity: 0; transform: translateY(-14px) scale(0.96); }
 }
-
 @keyframes msgIn {
-  from { opacity: 0; transform: translateY(7px); }
-  to   { opacity: 1; transform: translateY(0);   }
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+@keyframes settingsIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-/* === Ana Kapsayıcı === */
+/* === Ana Kapsayıcı — SABİT YÜKSEKLIK === */
 .container {
   width: 90%;
   max-width: 640px;
+  /* Pencere yüksekliği kadar — taşmaz */
+  height: calc(100vh - 20px);
   background: rgba(20, 20, 24, 0.94);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.35),
-    0 10px 40px rgba(0, 0, 0, 0.55),
-    0 2px 8px rgba(0, 0, 0, 0.3);
+    0 0 0 1px rgba(0,0,0,0.35),
+    0 10px 40px rgba(0,0,0,0.55),
+    0 2px 8px rgba(0,0,0,0.3);
   display: flex;
   flex-direction: column;
-  max-height: 520px;
-  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  overflow: hidden;
+  animation: slideDown 0.3s cubic-bezier(0.16,1,0.3,1) both;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.container.closing {
-  animation: slideUp 0.25s ease-in forwards;
-}
+.container.closing { animation: slideUp 0.25s ease-in forwards; }
 
 .container:focus-within {
-  border-color: rgba(99, 102, 241, 0.28);
+  border-color: rgba(99,102,241,0.28);
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.35),
-    0 10px 40px rgba(0, 0, 0, 0.55),
-    0 0 0 3px rgba(99, 102, 241, 0.09);
+    0 0 0 1px rgba(0,0,0,0.35),
+    0 10px 40px rgba(0,0,0,0.55),
+    0 0 0 3px rgba(99,102,241,0.09);
 }
 
-/* === Mesajlar Alanı === */
+/* === Mesajlar — FLEX GROW, SCROLL İÇİNDE === */
 .messages-area {
   flex: 1;
-  padding: 14px 14px 0 14px;
-  overflow-y: scroll;
-  scrollbar-width: none;          /* Firefox */
+  padding: 14px 14px 8px 14px;
+  overflow-y: auto;
+  scrollbar-width: none;
   display: flex;
   flex-direction: column;
   gap: 8px;
   min-height: 0;
 }
-
-.messages-area::-webkit-scrollbar {
-  display: none;                  /* Chrome/Safari */
-}
+.messages-area::-webkit-scrollbar { display: none; }
 
 .messages-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.06);
-  margin: 10px 0 0 0;
+  background: rgba(255,255,255,0.06);
   flex-shrink: 0;
 }
 
 /* === Mesaj Balonları === */
-.message {
-  display: flex;
-  animation: msgIn 0.22s ease-out both;
-}
-
+.message { display: flex; animation: msgIn 0.22s ease-out both; }
 .message.user      { justify-content: flex-end;  }
 .message.assistant { justify-content: flex-start; }
 
@@ -114,17 +103,15 @@ html, body {
   max-width: 82%;
   word-break: break-word;
 }
-
 .message.user .message-content {
-  background: rgba(99, 102, 241, 0.18);
-  border: 1px solid rgba(99, 102, 241, 0.28);
+  background: rgba(99,102,241,0.18);
+  border: 1px solid rgba(99,102,241,0.28);
   color: #e0e0ff;
   border-bottom-right-radius: 4px;
 }
-
 .message.assistant .message-content {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
   color: #cfcfd4;
   border-bottom-left-radius: 4px;
 }
@@ -139,12 +126,11 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Ataç / Attachment butonu */
-.attach-btn {
+.icon-btn {
   background: none;
   border: none;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.32);
+  color: rgba(255,255,255,0.32);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -153,11 +139,12 @@ html, body {
   transition: color 0.15s, background 0.15s;
   flex-shrink: 0;
 }
-
-.attach-btn:hover {
-  color: rgba(255, 255, 255, 0.65);
-  background: rgba(255, 255, 255, 0.07);
+.icon-btn:hover,
+.icon-btn.active {
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.07);
 }
+.icon-btn.active { color: #818cf8; }
 
 .main-input {
   flex: 1;
@@ -170,18 +157,130 @@ html, body {
   letter-spacing: 0.1px;
   line-height: 1.5;
 }
+.main-input::placeholder { color: rgba(255,255,255,0.25); }
 
-.main-input::placeholder {
-  color: rgba(255, 255, 255, 0.25);
-}
-
-/* Yükleniyor dönen çember */
 .loader {
   width: 16px;
   height: 16px;
-  border: 1.5px solid rgba(99, 102, 241, 0.18);
+  border: 1.5px solid rgba(99,102,241,0.18);
   border-top-color: #818cf8;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
   flex-shrink: 0;
+}
+
+/* === Ayarlar Paneli === */
+.settings-panel {
+  flex-shrink: 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: settingsIn 0.2s ease-out both;
+  overflow-y: auto;
+  max-height: 340px;
+  scrollbar-width: none;
+}
+.settings-panel::-webkit-scrollbar { display: none; }
+
+.settings-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 2px;
+}
+
+.settings-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.settings-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+}
+
+.settings-select,
+.settings-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 9px;
+  color: #e8e8ea;
+  font-size: 13px;
+  padding: 7px 10px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+.settings-select:focus,
+.settings-input:focus {
+  border-color: rgba(99,102,241,0.4);
+}
+.settings-select option { background: #1a1a20; }
+
+.settings-key-row {
+  display: flex;
+  gap: 8px;
+}
+.settings-key-row .settings-input { flex: 1; }
+
+.settings-save-btn {
+  background: rgba(99,102,241,0.18);
+  border: 1px solid rgba(99,102,241,0.3);
+  color: #a5b4fc;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 9px;
+  padding: 7px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.settings-save-btn:hover {
+  background: rgba(99,102,241,0.3);
+  color: #e0e7ff;
+}
+
+.settings-saved-badge {
+  font-size: 11px;
+  color: #6ee7b7;
+  text-align: center;
+  padding: 2px 0;
+}
+
+.provider-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.provider-chip {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 9px;
+  padding: 7px 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.provider-chip:hover {
+  border-color: rgba(99,102,241,0.3);
+  color: rgba(255,255,255,0.8);
+}
+.provider-chip.selected {
+  background: rgba(99,102,241,0.15);
+  border-color: rgba(99,102,241,0.45);
+  color: #a5b4fc;
+  font-weight: 600;
 }
