@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  openforge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openforge
+    image: openforge/openforge:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - OPENFORGE_API_KEY=${OPENFORGE_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+      - openforge-cache:/app/node_modules/.cache
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openforge-gateway
+    image: openforge/gateway:latest
+    command: ["node", "bin/cli.js", "gateway"]
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+    restart: unless-stopped
+
+volumes:
+  openforge-cache:
+
+# Podman Compose (use: podman-compose -f podman-compose.yml up)
+# Podman is a drop-in replacement for Docker
+# Install: brew install podman && podman machine start

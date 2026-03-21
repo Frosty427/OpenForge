@@ -1,0 +1,13 @@
+{
+  "name": "@openforge/monorepo",
+  "private": true,
+  "workspaces": [
+    "forgebot",
+    "openforge"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces",
+    "test": "npm run test --workspaces"
+  }
+}

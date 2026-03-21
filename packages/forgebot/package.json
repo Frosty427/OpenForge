@@ -1,0 +1,21 @@
+{
+  "name": "@openforge/forgebot",
+  "version": "1.0.0",
+  "description": "ForgeBot - AI Agent for OpenForge",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "openai": "^4.0.0",
+    "anthropic-ai": "^0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0",
+    "@types/node": "^20.0.0"
+  }
+}

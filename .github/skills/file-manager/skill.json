@@ -1,0 +1,13 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "File and directory operations",
+  "author": "OpenForge Team",
+  "triggers": [
+    "read file",
+    "write file",
+    "list files",
+    "delete file",
+    "create directory"
+  ]
+}

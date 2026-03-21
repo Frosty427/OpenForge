@@ -1,0 +1,207 @@
+<<<<<<< HEAD
+.disclaimer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.disclaimer-box {
+  width: 90%;
+  max-width: 500px;
+  background: #1a1a1a;
+  border: 1px solid #ff4444;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 0 30px rgba(255, 68, 68, 0.2);
+  color: #eee;
+  font-family: 'Inter', sans-serif;
+}
+
+.disclaimer-box h2 {
+  color: #ff4444;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.disclaimer-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  color: #ccc;
+  background: rgba(0,0,0,0.3);
+  padding: 15px;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.disclaimer-text ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.disclaimer-text li {
+  margin-bottom: 5px;
+}
+
+.disclaimer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+.checkbox-container input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff4444;
+}
+
+.accept-btn {
+  background: #ff4444;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.accept-btn:hover {
+  background: #ff6666;
+}
+
+.accept-btn.disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+=======
+.disclaimer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.disclaimer-box {
+  width: 90%;
+  max-width: 500px;
+  background: #1a1a1a;
+  border: 1px solid #ff4444;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 0 30px rgba(255, 68, 68, 0.2);
+  color: #eee;
+  font-family: 'Inter', sans-serif;
+}
+
+.disclaimer-box h2 {
+  color: #ff4444;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.disclaimer-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  color: #ccc;
+  background: rgba(0,0,0,0.3);
+  padding: 15px;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.disclaimer-text ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.disclaimer-text li {
+  margin-bottom: 5px;
+}
+
+.disclaimer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+.checkbox-container input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff4444;
+}
+
+.accept-btn {
+  background: #ff4444;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.accept-btn:hover {
+  background: #ff6666;
+}
+
+.accept-btn.disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+>>>>>>> 6a986b7 (new version)

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(firecrawl search:*)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}
