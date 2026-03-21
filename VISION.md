@@ -42,7 +42,7 @@ Fast iteration
 
 Readable, modifiable, and extendable code
 
-# 🚫 What We Will Not Merge (For Now)
+## 🚫 What We Will Not Merge (For Now)
 
 Core skills that can live in ForgeHub
 
