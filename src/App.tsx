@@ -65,8 +65,18 @@ function App() {
   /* auto scroll */
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
 
-  /* Pencere SABİT boyut — her zaman aynı yükseklik */
-  useEffect(() => { window.ipcRenderer.resizeWindow(660, 520) }, [])
+  /* Pencere boyutu — duruma göre dinamik:
+     boş + ayar kapalı → ince çubuk (66px)
+     ayar açık         → + ~300px
+     mesaj var         → max 480px               */
+  useEffect(() => {
+    const INPUT_H    = 66
+    const SETTINGS_H = showSettings ? 310 : 0
+    const MSGS_H     = messages.length > 0 ? 400 : 0
+    const total = INPUT_H + SETTINGS_H + MSGS_H
+    const h = Math.min(total, 560)
+    window.ipcRenderer.resizeWindow(660, h)
+  }, [messages.length, showSettings])
 
   /* kapanma animasyonu */
   useEffect(() => {
@@ -133,25 +143,21 @@ function App() {
   if (!disclaimerAccepted) return <Disclaimer onAccept={() => setDisclaimerAccepted(true)} />
 
   return (
-    <div className={`container${isClosing ? ' closing' : ''}`}>
+    <div className={`container${isClosing ? ' closing' : ''}${messages.length === 0 && !showSettings ? ' empty' : ''}`}>
 
       {/* ── Mesajlar ── */}
-      <div className="messages-area">
-        {messages.length === 0 && (
-          <div style={{ flex:1, display:'flex', alignItems:'center', justifyContent:'center',
-            color:'rgba(255,255,255,0.12)', fontSize:13 }}>
-            OpenForge'a hoş geldin — ne yapmamı istersin?
-          </div>
-        )}
-        {messages.map((msg, idx) => (
-          <div key={idx} className={`message ${msg.role}`}>
-            <div className="message-content">{msg.content}</div>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
+      {messages.length > 0 && (
+        <div className="messages-area">
+          {messages.map((msg, idx) => (
+            <div key={idx} className={`message ${msg.role}`}>
+              <div className="message-content">{msg.content}</div>
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+      )}
 
-      <div className="messages-divider" />
+      {messages.length > 0 && <div className="messages-divider" />}
 
       {/* ── Ayarlar Paneli ── */}
       {showSettings && (
