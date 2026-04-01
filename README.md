@@ -1,159 +1,182 @@
-# 🚀 OpenForge — The AI That Can Use Computer
+🚀 OpenForge — The AI That Operates Your Computer
 
-**OpenForge** is a next-generation AI desktop assistant that goes beyond chat.
-It doesn’t just respond — it **acts, executes, and controls your system**.
+  THE FUTURE OF DESKTOP AUTOMATION
 
-Built with **Electron, React, and TypeScript**, OpenForge brings true AI-powered computer interaction to your desktop — inspired by the vision of Jarvis.
+  GitHub release  GPL v3 License  Issues
 
----
+OpenForge is a next-generation AI desktop assistant that goes beyond simple chat. It doesn’t just respond — it acts, executes, and controls your system. Built with Electron, React, and TypeScript, OpenForge brings true AI-powered computer interaction to your desktop — inspired by the vision of Jarvis.
 
-## ✨ Why OpenForge?
+If you want a personal assistant that feels local, fast, and actually does things, this is it.
 
-&gt; Most AI tools talk.
-&gt; **OpenForge does.**
+Website · Documentation · Vision · Getting Started · Contributing
+⚡ Why OpenForge?
 
-* Execute real system commands
-* Orchestrate multiple AI providers
-* Run locally or in the cloud
-* Control your computer like an operator
+    Most AI tools talk.OpenForge does.
 
----
+While traditional AI wrappers are limited to conversation, OpenForge bridges the gap between Large Language Models and real system operations. It serves as a control plane for your operating system, translating natural language into actionable commands.
+✨ Core Features
+🧠 Multi-AI Integration
 
-## ⚡ Features
+OpenForge acts as a universal orchestrator for the best AI minds available:
 
-### 🧠 Multi-AI Integration
+    OpenAI (GPT-4, GPT-3.5)
+    Anthropic (Claude Series)
+    OpenRouter (Access to hundreds of models)
+    Local LLMs (Privacy-first via Ollama integration)
 
-* OpenAI
-* Anthropic
-* OpenRouter
-* Local LLMs (via Ollama)
-* Easily extendable to new providers
+💻 Real System Control
 
----
+Go beyond conversation. OpenForge acts as an operator:
 
-### ⌨️ Global Hotkey
+    Natural Language Execution: "Open notepad", "Kill the node process", "Clean the temp folder".
+    Direct Command Execution: Use /exec for raw terminal power.
 
-* Instantly summon OpenForge with:
+    /exec code ~/projects/my-app
 
-  ```
-  Alt + Space
-  ```
-* Always accessible, always ready
+ 
 
----
+     Safety First: Architecture designed with permission scopes and execution confirmations.
+     
 
-### 💻 System Control
+⌨️ Global Access 
 
-* Execute commands directly from chat:
+Forget alt-tabbing. Summon your agent instantly with a global hotkey: 
+text
+ 
+  
+ 
+Alt + Space
+ 
+ 
+ 
 
-  ```
-  /exec notepad
-  ```
-* Turn natural language into real system actions
+A sleek, floating command center ready at a moment's notice. 
+🎨 Futuristic Interface 
 
----
+A dark, minimal, and high-performance UI built for clarity: 
 
-### 🎨 Modern UI
+     Smooth, hardware-accelerated animations.
+     Distraction-free chat experience.
+     Optimized for both workflow and focus.
+     
 
-* Sleek, dark, futuristic interface
-* Smooth animations
-* Built for speed and clarity
+🧩 Extensible Architecture 
 
----
+Built to scale. The modular core allows for: 
 
-### 🧩 Extensible Architecture
+     Custom command plugins.
+     Tool integrations (File system, Web browsing, etc.).
+     Future agentic workflow support.
+     
 
-* Designed for future plugins
-* Modular system for scaling
-* Ready for advanced AI workflows
+🛣️ Roadmap 
 
----
+OpenForge is in active development. Here is the path forward: 
 
-## 📦 Installation
+     Core Electron App: Basic window management and hotkeys.
+     Multi-Provider Support: OpenAI, Anthropic, Ollama.
+     Settings UI: In-app management for API keys and preferences.
+     Context Awareness: Ability to "see" screen content (Vision integration).
+     Safety Sandbox: Confirmations before critical system executions.
+     Plugin System: Community-driven extensions for specific apps (VSCode, Chrome, etc.).
+     Local RAG: Chat with your local documents securely.
+     
 
-```
+📦 Installation 
+
+Get OpenForge running locally in minutes. 
+
+Prerequisites: 
+
+     Node.js (v18 or higher)
+     npm, pnpm, or yarn
+     
+
+bash
+ 
+  
+ 
+# 1. Clone the repository
 git clone https://github.com/Frosty427/OpenForge.git
+
+# 2. Navigate to the directory
 cd OpenForge
+
+# 3. Install dependencies
 npm install
-```
+ 
+ 
+ 
+🚀 Usage 
+🧪 Development Mode 
 
----
-
-## 🚀 Usage
-
-### 🧪 Development Mode
-
-Run with hot-reload:
-
-```
+Run the application with hot-reload for active development: 
+bash
+ 
+  
+ 
 npm run dev
-```
+ 
+ 
+ 
+🏗️ Production Build 
 
----
-
-### 🏗️ Production Build
-
-Build for your operating system:
-
-```
+Compile the application for your specific OS: 
+bash
+ 
+  
+ 
 npm run build
+ 
+ 
+ 
+
+Outputs will be generated in the dist/ or release/ directory. 
+🧠 Vision 
+
+OpenForge is not just an assistant — it's the foundation of: 
+
+     AI Agents: Autonomous workflows on your machine.
+     Automation Systems: Complex task chains triggered by simple prompts.
+     Hybrid Intelligence: A seamless blend of local and cloud AI capabilities.
+     OS Control Layer: A fully controllable AI operating interface.
+     
+
+⚙️ Configuration 
+
+Currently, AI providers and settings are configured directly in the codebase. 
+
+🔮 Upcoming: 
+
+     Full settings UI dashboard.
+     Secure API key management.
+     Dynamic provider switching.
+     
+
+🧪 Project Status 
+
+     
+
+    Status: BETA
+    Expect rapid iterations. APIs and core structures may change as we approach v1.0. 
+     
+
+🤝 Contributing 
+
+We welcome contributions from the community! Whether it's fixing a bug, adding a feature, or improving documentation, your help is appreciated. 
+
+    Fork the repository. 
+    Create a Feature Branch (git checkout -b feature/amazing-feature). 
+    Commit your changes. 
+    Push to the Branch. 
+    Open a Pull Request. 
+
+📜 License 
+
+This project is licensed under the GNU General Public License v3.0.
+See the LICENSE  file for details. 
+
+
+  OpenForge — The beginning of AI that doesn't just think, but does.
+
 ```
-
-➡️ Output will be available in:
-
-* dist/
-* or release/
-
----
-
-## ⚙️ Configuration
-
-Currently, AI providers and settings are configured directly in the codebase.
-
-🔮 Upcoming:
-
-* Full settings UI
-* API key management
-* Provider switching from dashboard
-
----
-
-## 🧠 Vision
-
-OpenForge is not just an assistant — it's the foundation of:
-
-* AI agents
-* Automation systems
-* Local + cloud hybrid intelligence
-* A fully controllable AI operating layer
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-If you’re planning a major change:
-
-* Open an issue first
-* Discuss the idea
-* Then submit a PR
-
----
-
-## 🧪 Status
-
-&gt; ⚠️ **BETA** — Active development in progress
-&gt; Expect rapid changes, new features, and improvements.
-
----
-
-## 📜 License
-
-Licensed under the
-[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
-
----
-
-🔥 **OpenForge is not just another AI tool.
-It’s the beginning of AI that actually uses your computer.**
