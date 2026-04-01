@@ -1,4 +1,3 @@
-```markdown
 # 🚀 OpenForge — The AI That Operates Your Computer
 
 <p align="center">
